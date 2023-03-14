@@ -1,4 +1,22 @@
 import { useEffect, useState } from 'react';
+import styled from '@emotion/styled';
+
+export const Container = styled.div({
+    width: '400px',
+    height: '400px',
+    border: '4px solid #fff',
+    borderRadius: '100%',
+    position: 'relative',
+    background: '#fff',
+});
+
+export const Box = styled.div({
+    position: 'absolute',
+    transform: 'translate(-50%, -50%)',
+    color: '#000',
+    top: '50%',
+    left: '50%',
+});
 
 export default function Timer() {
     const [time, setTime] = useState<number>(25 + 60);
@@ -46,15 +64,17 @@ export default function Timer() {
     };
 
     return (
-        <div>
-            <h1>{isBreak ? 'Break' : 'pomodoro'}</h1>
-            <h2>{formatTime(time)}</h2>
-            <button type="button" onClick={handleStartStop}>
-                {isActive ? 'Stop' : 'Start'}
-            </button>
-            <button type="button" onClick={handleReset}>
-                Reset
-            </button>
-        </div>
+        <Container>
+            <Box>
+                <h1>{isBreak ? 'Break' : 'pomodoro'}</h1>
+                <h2>{formatTime()}</h2>
+                <button type="button" onClick={handleStartStop}>
+                    {isActive ? 'Stop' : 'Start'}
+                </button>
+                <button type="button" onClick={handleReset}>
+                    Reset
+                </button>
+            </Box>
+        </Container>
     );
 }
